@@ -1,7 +1,6 @@
 #!/usr/bin/env php
 <?php
 
-
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx as Reader;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx as Writer;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -13,13 +12,15 @@ $args = $_SERVER['argv'];
 $inputFileName = $args[1];
 
 if(!file_exists($inputFileName)) {
-    echo "Error:  File not found.\n";
+    echo "Error: File not found.\n";
     exit(1);
 }
 
 $spreadsheet = (new Reader)->load($inputFileName);
 
-$datos = $spreadsheet->getSheet(0)->toArray();
+$sheetIndex = (count($args) > 3 ? $args[3] : 1) - 1;
+
+$datos = $spreadsheet->getSheet($sheetIndex)->toArray();
 
 $chunks = [];
 
@@ -27,7 +28,9 @@ $chunkSize = $args[2] ?: 1000;
 
 $chunks = array_chunk($datos, $chunkSize);
 
-$divideInSheets = count($args) > 3 ? !!$args[3] : false;
+$divideInSheets = count($args) > 4 ? !!$args[4] : false;
+
+$inputFileName = str_replace('.xlsx',  '', $inputFileName);
 
 foreach($chunks as $index => $chunk) {
 
@@ -46,5 +49,5 @@ foreach($chunks as $index => $chunk) {
 
 if($divideInSheets) {
     $writer = new Writer($spreadsheet);
-    $writer->save($inputFileName);
+    $writer->save($inputFileName.".xlsx");
 }

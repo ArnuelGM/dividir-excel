@@ -6,5 +6,5 @@ Divide an excel sheet in other excel files of `chunk_size` rows, or create other
 ## USAGE
 
 ```shell
-$ src/index.php <filename> <chunk_size> [<divide_in_sheets>]
+$ src/index.php <filename> <chunk_size> [sheet_to_read] [divide_in_sheets]
 ```
