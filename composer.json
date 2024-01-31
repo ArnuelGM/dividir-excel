@@ -1,0 +1,16 @@
+{
+    "name": "arnuel/dividir-excel",
+    "autoload": {
+        "psr-4": {
+            "Arnuel\\DividirExcel\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "arnuel"
+        }
+    ],
+    "require": {
+        "illuminate/database": "^10.43"
+    }
+}
