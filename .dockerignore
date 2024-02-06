@@ -1,0 +1,7 @@
+.git
+vendor/
+Dockerfile
+.gitignore
+.dockerignore
+*.xlsx
+*.XLSX

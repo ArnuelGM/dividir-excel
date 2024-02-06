@@ -11,6 +11,6 @@
         }
     ],
     "require": {
-        "illuminate/database": "^10.43"
+        "phpoffice/phpspreadsheet": "^2.0"
     }
 }
