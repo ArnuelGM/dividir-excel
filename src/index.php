@@ -1,6 +1,6 @@
 #!/usr/bin/env php
 <?php
-
+ini_set('memory_limit', '1024M');
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx as Reader;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx as Writer;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -42,7 +42,6 @@ foreach($chunks as $index => $chunk) {
         $excel = new Spreadsheet();
         $hoja = $excel->getSheet(0);
         $hoja->fromArray($chunk);
-        print_r(json_encode(get_class_methods($hoja), JSON_PRETTY_PRINT));
         $writer = new Writer($excel);
         $writer->save("{$inputFileName}_{$index}.xlsx");
     }
